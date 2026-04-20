@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tooltip</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg,#232526,#414345);
+      color: white;
+      text-align: center;
+    }
+
+    .box button {
+      margin: 10px;
+      border-radius: 25px;
+    }
+
+    /* 🎨 Custom Colors */
+    .tooltip-inner.custom-blue {
+      background: #007bff;
+    }
+
+    .tooltip-inner.custom-red {
+      background: #dc3545;
+    }
+
+    /* ✨ Animation Styles */
+    .tooltip.fade .tooltip-inner {
+      transform: scale(0.8);
+      transition: all 0.3s ease;
+    }
+
+    .tooltip.show .tooltip-inner {
+      transform: scale(1);
+    }
+
+    /* Slide animation */
+    .tooltip.bs-tooltip-top .arrow {
+      transition: all 0.3s ease;
+    }
+
+    .tooltip.bs-tooltip-top.show {
+      transform: translateY(-5px);
+    }
+
+    /* Icon style */
+    .icon {
+      font-size: 24px;
+      cursor: pointer;
+      margin: 15px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <h4>🔥Tooltip Collection</h4>
+
+  <!-- Positions -->
+  <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Top Tooltip">Top</button>
+  <button class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Right Tooltip">Right</button>
+  <button class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Bottom Tooltip">Bottom</button>
+  <button class="btn btn-danger" data-toggle="tooltip" data-placement="left" title="Left Tooltip">Left</button>
+
+  <br>
+
+  <!-- Trigger Types -->
+  <button class="btn btn-info" data-toggle="tooltip" data-trigger="click" title="Click Tooltip">Click</button>
+  <button class="btn btn-light" data-toggle="tooltip" data-trigger="focus" title="Focus Tooltip">Focus</button>
+
+  <br>
+
+  <!-- HTML Tooltip -->
+  <button class="btn btn-dark" data-toggle="tooltip" data-html="true"
+    title="<b>Bold</b> <br> <i>Italic content</i>">
+    HTML Tooltip
+  </button>
+
+  <br>
+
+  <!-- Colored Tooltip -->
+  <button class="btn btn-outline-primary custom-tooltip" data-color="custom-blue"
+    data-toggle="tooltip" title="Blue Tooltip">
+    Blue
+  </button>
+
+  <button class="btn btn-outline-danger custom-tooltip" data-color="custom-red"
+    data-toggle="tooltip" title="Red Tooltip">
+    Red
+  </button>
+
+  <br>
+
+  <!-- Delay Tooltip -->
+  <button class="btn btn-secondary" data-toggle="tooltip"
+    data-delay='{"show":500,"hide":200}'
+    title="Delayed Tooltip">
+    Delay
+  </button>
+
+  <br>
+
+  <!-- Disabled -->
+  <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Disabled Tooltip">
+    <button class="btn btn-secondary" disabled>Disabled</button>
+  </span>
+
+  <br>
+
+  <!-- Icon Tooltip -->
+  <span class="icon text-warning" data-toggle="tooltip" title="Settings ⚙️">⚙️</span>
+  <span class="icon text-info" data-toggle="tooltip" title="Info ℹ️">ℹ️</span>
+
+</div>
+
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+
+    // Custom color logic
+    $('.custom-tooltip').on('shown.bs.tooltip', function () {
+      let color = $(this).data('color')
+      $('.tooltip-inner').addClass(color)
+    })
+  })
+</script>
+
+</body>
+</html>
